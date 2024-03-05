@@ -19,6 +19,8 @@ usage() {
 if [ $# -eq 0 ]; then
     read -p "Which workflow (Name or ID) do you want to delete all runs? " workflowID
     read -p "Provide target <OWNER/REPO> to cleanup. " targetRepo  
+elif [ -z $workflowID ]; then
+    read -p "Which workflow (Name or ID) do you want to delete all runs? " workflowID
 else
     while getopts ":w:r:" opt; do
         case $opt in
