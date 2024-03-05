@@ -38,13 +38,16 @@ you can set the proper file permissions by running the following command.
 sudo chmod +x ./cleanup_workflow_runs.sh
 ```
 ## Using The Tool
-This tool takes only one parameter.  That's a GitHub workflow id.  The id can 
+This tool requires only one parameter.  That's a GitHub workflow id.  The id can 
 be the name, or the actual numeric id.  I suggest using the numeric id because 
 it's required to be unique.  If you're using this tool, there's a decent chance 
-you have a few workflow that share the same or very similar names.
-#### Providing Workflow ID by argument
+you have a few workflow that share the same or very similar names.  I'd suggest 
+also using the `-r` flag to provide the target repo.  Doing that allows you to
+run the script from outside of the local copy of the target repo and makes using
+the script much less finicky.
+#### Providing values by flag
 ```bash
-./cleanup_workflow_runs.sh --workflow your_workflow_id
+./cleanup_workflow_runs.sh -w <YOUR_WORKFLOW_ID> -r <OWNER/REPO>
 ```
 #### Providing the Workflow ID by prompt
-Alternately you can run the command without the `--workflow` flag.  In that case you'll be prompted for it during execution.
+Alternately you can run the command without flags.  In that case you'll be prompted for values during execution.
