@@ -47,7 +47,7 @@ echo -e "\nTotal:" ${#runIDs[@]} "\n"
 
 # Prompt the user for confirmation before deleting
 # TODO: add a "quiet" mode that doesn't require interactivity 
-# TODO: move confirmation and delete to a function and wrap with if statement that exits if runIDs[] is empty
+# TODO: #3 move confirmation and delete to a function and wrap with if statement that exits if runIDs[] is empty
 read -p "Are you sure you want to continue? (yes/no): " response
 if [[ "$response" == "yes" || "$response" == "y" ]]; then
     echo "Continuing..."
