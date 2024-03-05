@@ -27,7 +27,7 @@ fi
 echo "You provided Workflow ID: $workflowID"
 
 # Get the list of run id's for the provided workflow
-runIDs=( $(gh api -H "Accept: application/vnd.github+json" -H "X-GitHub-Api-Version: 2022-11-28" /repos/dotcms/core/actions/workflows/$workflowID/runs | jq '.workflow_runs[].id') ) 
+runIDs=( $(gh api --paginate -H "Accept: application/vnd.github+json" -H "X-GitHub-Api-Version: 2022-11-28" /repos/dotcms/core/actions/workflows/$workflowID/runs | jq '.workflow_runs[].id') ) 
 
 # provide list of runIDs for the workflow 
 echo "The following is a list of GitHub Workflow Run IDs that will be deleted..." 
