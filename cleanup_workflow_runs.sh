@@ -8,20 +8,27 @@
 # the list of actions on [dotcms/core](https://github.com/dotCMS/core/actions/)
 
 #TODO: Option to disable workflow when all runs are cleaned up
-#TODO: Update README.md to make sure you run this in the local working directory
-# of the repo you want to delete workflow runs on.
 
+# Define usage helper function 
+usage() {
+    echo "Usage: $0 -w <workflowID> -r <OWNER/REPO>"
+    exit 1
+}
 
 # Get workflow ID we want to cleanup by command arg OR if not provided, by prompt
 if [ $# -eq 0 ]; then
     read -p "Which workflow (Name or ID) do you want to delete all runs? " workflowID
+    read -p "Provide target <OWNER/REPO> to cleanup. " targetRepo  
 else
-    case $1 in
-        -w|--workflow) workflowID="$2"; shift ;;
-        *) echo "Unknown parameter passed: $1"; exit 1 ;;
-    esac
+    while getopts ":w:r:" opt; do
+        case $opt in
+            w) workflowID=$OPTARG ;;
+            r) targetRepo=$OPTARG ;;
+            \?) echo "Invalid option: -$OPTARG" >&2; usage ;;
+            :) echo "Option -$OPTARG requires an argument." >&2; usage ;;
+        esac
+    done
     shift
-    #workflowID=$1
 fi
 
 echo "You provided Workflow ID: $workflowID"
@@ -44,7 +51,7 @@ if [[ "$response" == "yes" || "$response" == "y" ]]; then
     # Add deletion code here when ready to weaponize this script    
     for id in "${runIDs[@]}"; do
         echo "deleting" $id "..."
-        gh run delete $id
+        gh run --repo $targetRepo delete $id
     done
 elif [[ "$response" == "no" || "$response" == "n" ]]; then
     echo "Aborting...  No deletions made"
