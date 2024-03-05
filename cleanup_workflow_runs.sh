@@ -37,6 +37,10 @@ read -p "Are you sure you want to continue? (yes/no): " response
 if [[ "$response" == "yes" || "$response" == "y" ]]; then
     echo "Continuing..."
     # Add deletion code here when ready to weaponize this script    
+    for id in "${runIDs[@]}"; do
+        echo "deleting" $id "..."
+        gh run delete $id
+    done
 elif [[ "$response" == "no" || "$response" == "n" ]]; then
     echo "Aborting...  No deletions made"
     exit 1
