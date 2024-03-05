@@ -7,6 +7,11 @@
 # for a given workflow.  It's initial impetus for existance was to cleanup 
 # the list of actions on [dotcms/core](https://github.com/dotCMS/core/actions/)
 
+#TODO: Option to disable workflow when all runs are cleaned up
+#TODO: Update README.md to make sure you run this in the local working directory
+# of the repo you want to delete workflow runs on.
+
+
 # Get workflow ID we want to cleanup by command arg OR if not provided, by prompt
 if [ $# -eq 0 ]; then
     read -p "Which workflow (Name or ID) do you want to delete all runs? " workflowID
