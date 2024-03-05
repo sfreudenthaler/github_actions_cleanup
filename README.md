@@ -14,7 +14,12 @@ The tool assumes you've got a working (installed and authenticated) GitHub CLI.
 It uses the GitHub CLI for all interactions with GitHub, rather than use the 
 GitHub API.  I made this choice because it simplifies authentication and secret 
 handling for me.  Rather than read a sub-par quick-start that I could come up 
-with, I'd suggest using [GitHubs own documentation](https://docs.github.com/en/github-cli/github-cli/quickstart).
+with, I'd suggest using [GitHubs own documentation](https://docs.github.com/en/github-cli/github-cli/quickstart), 
+but the tl;dr is
+```bash
+brew install gh
+gh auth login
+```
 #### jq
 jq is super powerful and extremely common.  It gives us nice and easy ways to 
 work with data in the JSON format.  It is supported in all sorts of languages 
